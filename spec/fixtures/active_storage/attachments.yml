@@ -1,0 +1,6 @@
+<% 9.times do |i| %>
+  chunk_document_<%= i %>:
+    name: document
+    record: upload_chunk_<%= i %> (UploadChunk)
+    blob: blob_<%= i %>
+<% end %>

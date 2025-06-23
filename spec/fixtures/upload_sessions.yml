@@ -1,0 +1,11 @@
+test_upload_session:
+  byte_length: 8718
+  total_chunks: 9
+  chunk_size: 1024
+  status: "complete"
+
+incomplete_upload_session:
+  byte_length: 8718
+  total_chunks: 9
+  chunk_size: 1024
+  status: "incomplete"

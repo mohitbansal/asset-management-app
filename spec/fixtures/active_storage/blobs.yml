@@ -1,0 +1,3 @@
+<% 9.times do |i| %>
+  blob_<%= i %>: <%= ActiveStorage::FixtureSet.blob filename: "chunk_#{i}.png" %>
+<% end %>

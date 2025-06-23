@@ -11,4 +11,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  scope "/api/v1" do
+    resources :upload_sessions, only: [:create] do
+      member do
+        get "status"
+        post "complete"
+      end
+      resources :upload_chunks, only: [:create]
+    end
+  end
 end

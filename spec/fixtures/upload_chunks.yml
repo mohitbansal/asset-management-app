@@ -1,0 +1,27 @@
+upload_chunk_0:
+  sequence_no: 0
+  upload_session: test_upload_session
+upload_chunk_1:
+  sequence_no: 1
+  upload_session: test_upload_session
+upload_chunk_2:
+  sequence_no: 2
+  upload_session: test_upload_session
+upload_chunk_3:
+  sequence_no: 3
+  upload_session: test_upload_session
+upload_chunk_4:
+  sequence_no: 4
+  upload_session: test_upload_session
+upload_chunk_5:
+  sequence_no: 5
+  upload_session: test_upload_session
+upload_chunk_6:
+  sequence_no: 6
+  upload_session: test_upload_session
+upload_chunk_7:
+  sequence_no: 7
+  upload_session: test_upload_session
+upload_chunk_8:
+  sequence_no: 8
+  upload_session: test_upload_session

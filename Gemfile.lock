@@ -102,6 +102,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     declarative (0.0.20)
+    diff-lcs (1.6.2)
     digest-crc (0.7.0)
       rake (>= 12.0.0, < 14.0.0)
     dotenv (3.1.8)
@@ -310,6 +311,23 @@ GEM
       uber (< 0.2.0)
     retriable (3.1.2)
     rexml (3.4.1)
+    rspec-core (3.13.4)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (8.0.1)
+      actionpack (>= 7.2)
+      activesupport (>= 7.2)
+      railties (>= 7.2)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.4)
     rubocop (1.77.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -347,6 +365,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
     signet (0.20.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -437,8 +457,10 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
+  rspec-rails
   rubocop-rails-omakase
   selenium-webdriver
+  shoulda-matchers
   solid_cable
   solid_cache
   solid_queue
