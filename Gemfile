@@ -66,3 +66,5 @@ group :test do
 end
 
 gem "google-cloud-storage"
+
+gem "image_processing"

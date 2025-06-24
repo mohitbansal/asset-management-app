@@ -3,7 +3,9 @@ class UploadSession < ApplicationRecord
   MAX_CHUNK_SIZE = 5.megabytes
   enum :status, incomplete: "incomplete", complete: "complete", assembled: "assembled", scan_failure: "scan_failed", success: "success", default: :incomplete
   
-  has_one_attached :document
+  has_one_attached :document do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100], preprocessed: true
+  end
   
   has_many :upload_chunks
 
