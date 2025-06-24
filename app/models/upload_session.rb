@@ -1,12 +1,16 @@
 class UploadSession < ApplicationRecord
+  MAX_CHUNKS = 1000
+  MAX_CHUNK_SIZE = 5.megabytes
   enum :status, incomplete: "incomplete", complete: "complete", assembled: "assembled", default: :incomplete
   
   has_one_attached :document
   
   has_many :upload_chunks
 
-  validates :total_chunks, :chunk_size, presence: true
-
+  validates :chunk_size, numericality: { less_than_or_equal_to: MAX_CHUNK_SIZE, greater_than: 0 }
+  validates :total_chunks, numericality: { less_than_or_equal_to: MAX_CHUNKS, greater_than: 0 }
+  validates :content_type, inclusion: { in: %w(image/jpeg image/png video/mp4) }
+  
   validate :validate_chunks_size_on_complete, if: :complete?
 
   after_save :process_file, if: [:saved_change_to_status?, :complete?]

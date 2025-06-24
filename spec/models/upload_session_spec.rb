@@ -5,6 +5,9 @@ RSpec.describe UploadSession, type: :model do
 
   it { should have_many(:upload_chunks) }
   it { should have_one_attached(:document) }
+  it { should validate_inclusion_of(:content_type).in_array(['image/png', 'image/jpeg', 'video/mp4'])}
+  it { should validate_numericality_of(:chunk_size).is_less_than_or_equal_to(5.megabytes).is_greater_than(0) }
+  it { should validate_numericality_of(:total_chunks).is_less_than_or_equal_to(1000).is_greater_than(0) }
 
   it "validates chunks size on complete" do
     upload_session = UploadSession.new(status: :complete, total_chunks: 8)

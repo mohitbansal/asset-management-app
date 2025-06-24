@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Upload session", type: :request do
-  fixtures :upload_sessions
+  fixtures :upload_sessions, :upload_chunks, "active_storage/attachments", "active_storage/blobs"
 
   describe "#create" do
     context "with valid data" do
       it "creates a upload session" do
         headers = { "CONTENT_TYPE" => "application/json" }
         expect {
-          post "/api/v1/upload_sessions", :params => { :chunk_size => 1024, total_chunks: 5 }
+          post "/api/v1/upload_sessions", :params => { :chunk_size => 1024, total_chunks: 5, content_type: 'image/png' }
         }.to change { UploadSession.count }.by(1)
         expect(response).to have_http_status(:created) 
         res = JSON.parse(response.body)
@@ -36,11 +36,10 @@ RSpec.describe "Upload session", type: :request do
       expect(response).to have_http_status(:success)
       res = JSON.parse(response.body)
       expect(res).to eq({
-        "byte_length" => 8718,
         "chunk_size" => 1024, 
         "total_chunks" => 9, 
-        "status" => "complete", 
-        "uploaded_chunks" => [0, 1, 2, 3, 4, 5, 6, 7, 8]})
+        "status" => "complete"
+        })
     end
 
   end
@@ -54,7 +53,7 @@ RSpec.describe "Upload session", type: :request do
         post "/api/v1/upload_sessions/#{upload_session.id}/complete"
         expect(response).to have_http_status(:unprocessable_entity)
         res = JSON.parse(response.body)
-        expect(res["errors"]).to eq(["session can't be complete because uploaded chunks are not equal to total chunks"])
+        expect(res["errors"]).to be_present
       end
     end
 

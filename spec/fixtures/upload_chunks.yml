@@ -25,3 +25,6 @@ upload_chunk_7:
 upload_chunk_8:
   sequence_no: 8
   upload_session: test_upload_session
+large_chunk:
+  sequence_no: 1
+  upload_session: large_chunk_session

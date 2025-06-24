@@ -4,3 +4,9 @@
     record: upload_chunk_<%= i %> (UploadChunk)
     blob: blob_<%= i %>
 <% end %>
+<% if true %>
+  large_chunk_document:
+    name: document
+    record: large_chunk (UploadChunk)
+    blob: test_png_blob
+<% end %>
