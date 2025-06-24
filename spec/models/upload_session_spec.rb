@@ -51,4 +51,38 @@ RSpec.describe UploadSession, type: :model do
     end
   end
 
+  describe '#scan_virus!' do
+    context "when all chunks are assembled" do
+      it "calls ClamAV to scan for viruses" do
+        upload_session = upload_sessions(:assembled_session)
+        expect(MockClamAv).to receive(:safe?).once
+        upload_session.scan_virus!
+      end
+      context "when ClamAV returns true" do
+        before do
+          allow(MockClamAv).to receive(:safe?).and_return(true)
+        end
+
+        it "sets status as success" do
+          upload_session = upload_sessions(:assembled_session)
+          upload_session.scan_virus!
+          expect(upload_session.success?).to be true
+        end
+
+      end
+
+      context "when ClamAV returns false" do
+        before do
+          allow(MockClamAv).to receive(:safe?).and_return(false)
+        end
+
+        it "sets status as scan failure" do
+          upload_session = upload_sessions(:assembled_session)
+          upload_session.scan_virus!
+          expect(upload_session.success?).to be false
+        end
+      end
+    end
+  end
+
 end

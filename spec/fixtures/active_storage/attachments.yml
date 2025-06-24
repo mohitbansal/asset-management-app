@@ -9,4 +9,8 @@
     name: document
     record: large_chunk (UploadChunk)
     blob: test_png_blob
+  assembled_session_document:
+    name: document
+    record: assembled_session (UploadSession)
+    blob: test_png_blob
 <% end %>

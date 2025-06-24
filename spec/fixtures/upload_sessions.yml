@@ -13,3 +13,9 @@ incomplete_upload_session:
 large_chunk_session:
   chunk_size: 1024
   total_chunks: 1
+
+assembled_session:
+  content_type: 'image/png'
+  total_chunks: 9
+  chunk_size: 1024
+  status: "assembled"

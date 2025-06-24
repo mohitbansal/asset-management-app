@@ -1,7 +1,7 @@
 class UploadSession < ApplicationRecord
   MAX_CHUNKS = 1000
   MAX_CHUNK_SIZE = 5.megabytes
-  enum :status, incomplete: "incomplete", complete: "complete", assembled: "assembled", default: :incomplete
+  enum :status, incomplete: "incomplete", complete: "complete", assembled: "assembled", scan_failure: "scan_failed", success: "success", default: :incomplete
   
   has_one_attached :document
   
@@ -29,6 +29,18 @@ class UploadSession < ApplicationRecord
     document.attach(new_blob)
     self.status = :assembled
     self.save!
+  end
+
+  def scan_virus!
+    return if !assembled?
+    document.open do |file|
+      if MockClamAv.safe?(document.blob)
+        self.status = :success
+      else
+        self.status = :scan_failure
+      end
+      self.save!
+    end
   end
 
   def process_file

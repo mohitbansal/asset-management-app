@@ -58,9 +58,11 @@ RSpec.describe "Upload session", type: :request do
     end
 
     context "when all chunks have been uploaded" do
-      it "assembles chunks" do
+      it "marks the session as complete" do
         upload_session = upload_sessions(:test_upload_session)
         upload_session.update_column(:status, "incomplete")
+        expect(FileProcessingJob).to receive(:perform_later).with(upload_session.id)
+        
         headers = { "CONTENT_TYPE" => "application/json" }
         post "/api/v1/upload_sessions/#{upload_session.id}/complete"
         
