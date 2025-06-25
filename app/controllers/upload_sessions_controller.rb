@@ -20,7 +20,7 @@ class UploadSessionsController < ApplicationController
     if @upload_session.incomplete?
       h[:uploaded_chunks] = @upload_session.upload_chunks.order(:sequence_no).pluck(:sequence_no)
     end
-    if @upload_session.assembled?
+    if @upload_session.success?
       h[:document_url] = Rails.application.routes.url_helpers.rails_blob_path(@upload_session.document, only_path: true)
     end
     render json: h
