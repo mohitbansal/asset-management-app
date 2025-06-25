@@ -1,4 +1,5 @@
 class UploadChunksController < ApplicationController
+  skip_forgery_protection
   before_action :set_upload_session
   def create
     chunk = @upload_session.upload_chunks.create(chunk_params)
