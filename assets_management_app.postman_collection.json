@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "c8b96cdd-9684-4840-bdbb-cb324975bc0e",
+		"name": "assets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "upload sessions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "total_chunks",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "chunk_size",
+							"value": "1048576",
+							"type": "text"
+						},
+						{
+							"key": "content_type",
+							"value": "image/png",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/upload_sessions",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upload_sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/upload_sessions/2/status",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upload_sessions",
+						"2",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload chunk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sequence_no",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/Users/punchh_mohit/Downloads/256x256bb.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/upload_sessions/2/upload_chunks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upload_sessions",
+						"2",
+						"upload_chunks"
+					],
+					"query": [
+						{
+							"key": "sequence_no",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "document",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/upload_sessions/2/complete",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upload_sessions",
+						"2",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
