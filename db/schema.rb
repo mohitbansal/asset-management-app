@@ -49,7 +49,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_051426) do
   end
 
   create_table "upload_sessions", force: :cascade do |t|
-    t.integer "byte_length"
     t.string "content_type"
     t.integer "total_chunks"
     t.integer "chunk_size"
